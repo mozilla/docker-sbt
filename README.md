@@ -1,4 +1,4 @@
-# scala-sbt
+# docker-sbt
 Dockerfile for sbt (Scala build tool)
 
 This is built on top of the
@@ -9,19 +9,19 @@ and takes inspiration from
 ## Usage
 
 Install [Docker](https://www.docker.com/) and pull the image
-([mozilla/scala-sbt](https://hub.docker.com/r/mozilla/scala-sbt/) on DockerHub):
+([mozilla/sbt](https://hub.docker.com/r/mozilla/sbt/) on DockerHub):
 
-    docker pull mozilla/scala-sbt
+    docker pull mozilla/sbt
 
 You can then run `sbt` inside docker to compile code like:
 
-    docker run -it --rm mozilla/scala-sbt sbt shell
+    docker run -it --rm mozilla/sbt sbt shell
 
 If you want to execute sbt commands on a project on your local
 filesystem, you may want to mount the current directory and various
 local caches as volumes and set the working directory as well:
 
-    docker run -it --rm -v ~/.ivy2:/root/.ivy2 -v ~/.sbt:/root/.sbt -v $PWD:/app -w /app mozilla/scala-sbt sbt shell
+    docker run -it --rm -v ~/.ivy2:/root/.ivy2 -v ~/.sbt:/root/.sbt -v $PWD:/app -w /app mozilla/sbt sbt shell
 
 ## Building
 
@@ -47,9 +47,9 @@ SBT_VERSION=1.1.1
 docker build \
     --build-arg OPENJDK_TAG=$OPENJDK_TAG \
     --build-arg SBT_VERSION=$SBT_VERSION \
-    --tag mozilla/scala-sbt:${OPENJDK_TAG}_${SBT_VERSION} \
-    --tag mozilla/scala-sbt:latest \
+    --tag mozilla/sbt:${OPENJDK_TAG}_${SBT_VERSION} \
+    --tag mozilla/sbt:latest \
     .
 
-docker push mozilla/scala-sbt:${OPENJDK_TAG}_${SBT_VERSION}
+docker push mozilla/sbt:${OPENJDK_TAG}_${SBT_VERSION}
 ```
