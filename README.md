@@ -8,7 +8,8 @@ and takes inspiration from
 
 ## Usage
 
-Install [Docker](https://www.docker.com/) and pull the image:
+Install [Docker](https://www.docker.com/) and pull the image
+([mozilla/scala-sbt](https://hub.docker.com/r/mozilla/scala-sbt/) on DockerHub):
 
     docker pull mozilla/scala-sbt
 
