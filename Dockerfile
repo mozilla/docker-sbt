@@ -1,7 +1,7 @@
 # This Dockerfile has two required ARGs to determine which base image
 # to use for the JDK and which sbt version to install.
 
-ARG OPENJDK_TAG=8u212
+ARG OPENJDK_TAG=8u232
 FROM openjdk:${OPENJDK_TAG}
 
 ARG SBT_VERSION=1.3.6

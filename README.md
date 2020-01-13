@@ -28,7 +28,7 @@ local caches as volumes and set the working directory as well:
 To build, you need to specify the desired openjdk and sbt versions via
 `--build-arg` parameters:
 
-    docker build --build-arg OPENJDK_TAG=8u212 --build-arg SBT_VERSION=1.3.6 .
+    docker build --build-arg OPENJDK_TAG=8u232 --build-arg SBT_VERSION=1.3.6 .
 
 ## Pushing a new tag to DockerHub
 
@@ -41,7 +41,7 @@ Mozilla organization and be logged in to DockerHub:
 Then use the following recipe to build and push:
 
 ```bash
-OPENJDK_TAG=8u212
+OPENJDK_TAG=8u232
 SBT_VERSION=1.3.6
 
 docker build \
