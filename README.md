@@ -28,7 +28,7 @@ local caches as volumes and set the working directory as well:
 To build, you need to specify the desired openjdk and sbt versions via
 `--build-arg` parameters:
 
-    docker build --build-arg OPENJDK_TAG=8u232 --build-arg SBT_VERSION=1.3.8 .
+    docker build --build-arg OPENJDK_TAG=8u232 --build-arg SBT_VERSION=1.3.12 .
 
 ## Pushing a new tag to DockerHub
 
@@ -42,7 +42,7 @@ Then use the following recipe to build and push:
 
 ```bash
 OPENJDK_TAG=8u232
-SBT_VERSION=1.3.8
+SBT_VERSION=1.3.12
 
 docker build \
     --build-arg OPENJDK_TAG=$OPENJDK_TAG \
