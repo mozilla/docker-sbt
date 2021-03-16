@@ -42,7 +42,7 @@ Then use the following recipe to build and push:
 
 ```bash
 OPENJDK_TAG=8u232
-SBT_VERSION=1.4.1
+SBT_VERSION=1.4.5
 
 docker build \
     --build-arg OPENJDK_TAG=$OPENJDK_TAG \
