@@ -1,10 +1,20 @@
 # docker-sbt
+
 Dockerfile for sbt (Scala build tool)
 
 This is built on top of the
 [openjdk](https://hub.docker.com/_/openjdk/) image
 and takes inspiration from
 [hseeberger/scala-sbt](https://github.com/hseeberger/scala-sbt).
+
+# Tatari Fork
+
+This fork slightly modifies the Dockerfile to install curl.
+
+This way, we can use a `slim` OpenJDK base for smaller images.
+
+### TODO: 
+It also adds a `.drone.yml` to build and upload to our ECR.
 
 ## Usage
 
