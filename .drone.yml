@@ -1,0 +1,58 @@
+---
+kind: pipeline
+type: docker
+name: run-checks
+trigger:
+  event:
+    - push
+
+## The Workers's docker socket so our docker runner can run builds from there.
+volumes:
+  - name: docker
+    host:
+      path: /var/run/docker.sock
+
+steps:
+  # Build the docker image
+  - name: build-docker-image
+    image: docker:18
+    volumes:
+      - name: docker
+        path: '/var/run/docker.sock'
+    commands:
+      - docker build -t sbt:${DRONE_COMMIT_SHA} .
+
+  # Publish docker image for any builds on master
+  - name: publish-ecr
+    image: plugins/ecr:1.0
+    when:
+      branch:
+        - master
+        - main
+    volumes:
+      - name: docker
+        path: '/var/run/docker.sock'
+    settings:
+      access_key:
+        from_secret: AWS_ECR_ACCESS_KEY
+      secret_key:
+        from_secret: AWS_ECR_SECRET_KEY
+      region: us-west-2
+      repo: 878256633362.dkr.ecr.us-west-2.amazonaws.com/sbt
+      tags:
+        - latest
+        - ${DRONE_COMMIT_SHA}
+
+  # Remove the docker image when not master
+  - name: delete-docker-image
+    image: docker:18
+    volumes:
+      - name: docker
+        path: '/var/run/docker.sock'
+    when:
+      branch:
+        exclude: [master, main]
+      status: [success, failure]
+    commands:
+      # Delete the image on a best-effort basis, by always returning 0.
+      - docker rmi sbt:${DRONE_COMMIT_SHA} || true
