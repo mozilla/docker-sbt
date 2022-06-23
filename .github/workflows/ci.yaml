@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - '**'
+
+permissions:
+  contents: read
+
+jobs:
+  docker-build:
+    name: Docker Build
+    uses: tatari-tv/github-actions/.github/workflows/docker-build.yml@v1.1
+    secrets: inherit
+    with:
+      repo: scratch
+      tags: sbt-${{github.sha}}
+
+  docker-copy:
+    name: docker-copy
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - docker-build
+    secrets: inherit
+    uses: tatari-tv/github-actions/.github/workflows/docker-copy.yml@v1
+    with:
+      source: ${{needs.docker-build.outputs.image}}
+      repo: sbt
+      tags: ${{github.sha}},latest
