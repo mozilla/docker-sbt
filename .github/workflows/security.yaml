@@ -1,0 +1,13 @@
+name: security
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  security:
+    uses: tatari-tv/github-actions/.github/workflows/security.yml@v1
+    secrets: inherit
