@@ -13,8 +13,6 @@ This fork slightly modifies the Dockerfile to install curl.
 
 This way, we can use a `slim` OpenJDK base for smaller images.
 
-It also adds a `.drone.yml` to build and upload to our ECR.
-
 ## Usage
 
 Install [Docker](https://www.docker.com/) and pull the image
