@@ -1,10 +1,10 @@
 # This Dockerfile has two required ARGs to determine which base image
 # to use for the JDK and which sbt version to install.
 
-ARG OPENJDK_TAG=11.0.13
+ARG OPENJDK_TAG=17.0.2
 FROM openjdk:${OPENJDK_TAG}
 
-ARG SBT_VERSION=1.6.2
+ARG SBT_VERSION=1.9.3
 
 # prevent this error: java.lang.IllegalStateException: cannot run sbt from root directory without -Dsbt.rootdir=true; see sbt/sbt#1458
 WORKDIR /app
